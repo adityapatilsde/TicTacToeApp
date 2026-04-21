@@ -4,22 +4,30 @@ import java.util.Scanner;
 
 public class TicTacToeApp {
 
+    // Method to convert slot to row index
+    public static int getRow(int slot) {
+        return (slot - 1) / 3;
+    }
 
-    public static int getUserMove() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        int slot;
-        System.out.print("Enter your move (1-9): ");
-        slot = scanner.nextInt();
-
-        return slot;
+    public static int getCol(int slot) {
+        return (slot - 1) % 3;
     }
 
     public static void main(String[] args) {
-        int userSlot = getUserMove();
-        System.out.println("User selected slot: " + userSlot);
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("Enter slot number (1-9): ");
+        int slot = scanner.nextInt();
+
+
+        int row = getRow(slot);
+        int col = getCol(slot);
+
+
+        System.out.println("Row index: " + row);
+        System.out.println("Column index: " + col);
     }
 }
-
-
