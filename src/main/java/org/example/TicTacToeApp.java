@@ -1,33 +1,34 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class TicTacToeApp {
 
-    // Method to convert slot to row index
-    public static int getRow(int slot) {
-        return (slot - 1) / 3;
-    }
+    // Method to check if move is valid
+    public static boolean isValidMove(char[][] board, int row, int col) {
 
-
-    public static int getCol(int slot) {
-        return (slot - 1) % 3;
+        // Step 1: Check boundary conditions
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+        if (board[row][col] != '-') {
+            return false;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
+        char[][] board = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+        };
 
-        Scanner scanner = new Scanner(System.in);
-
-
-        System.out.print("Enter slot number (1-9): ");
-        int slot = scanner.nextInt();
-
-
-        int row = getRow(slot);
-        int col = getCol(slot);
-
-
-        System.out.println("Row index: " + row);
-        System.out.println("Column index: " + col);
+        int row = 1;
+        int col = 1;
+        boolean result = isValidMove(board, row, col);
+        if (result) {
+            System.out.println("Move is valid");
+        } else {
+            System.out.println("Move is invalid");
+        }
     }
 }
