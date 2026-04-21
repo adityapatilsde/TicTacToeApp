@@ -1,21 +1,35 @@
 package org.example;
 
+import java.util.Random;
+
 public class TicTacToeApp {
 
     public static void main(String[] args) {
-        char[][] board = new char[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
-        }
-        System.out.println("Tic-Tac-Toe Board:");
+        String user = "User";
+        String computer = "Computer";
+        char userSymbol;
+        char computerSymbol;
+        String currentPlayer;
+        Random random = new Random();
+        int toss = random.nextInt(2); // 0 or 1
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
+        System.out.println("Tossing a coin...");
+        if (toss == 0) {
+            System.out.println("User won the toss!");
+
+            currentPlayer = user;
+            userSymbol = 'X';
+            computerSymbol = 'O';
+
+        } else {
+            System.out.println("Computer won the toss!");
+
+            currentPlayer = computer;
+            computerSymbol = 'X';
+            userSymbol = 'O';
         }
+        System.out.println("First Player: " + currentPlayer);
+        System.out.println("User Symbol: " + userSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
     }
 }
