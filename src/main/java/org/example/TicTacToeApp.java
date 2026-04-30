@@ -1,34 +1,42 @@
 package org.example;
 
-public class TicTacToeApp {
+import java.util.Random;
 
-    // Method to check if move is valid
-    public static boolean isValidMove(char[][] board, int row, int col) {
+public class TicTacToe {
 
-        // Step 1: Check boundary conditions
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
-        }
-        if (board[row][col] != '-') {
-            return false;
-        }
-        return true;
-    }
+    static char[][] board = {
+            {'-', '-', '-'},
+            {'-', '-', '-'},
+            {'-', '-', '-'}
+    };
+
+    static char computerSymbol = 'O';
 
     public static void main(String[] args) {
-        char[][] board = {
-                {'-', '-', '-'},
-                {'-', '-', '-'},
-                {'-', '-', '-'}
-        };
+        computerMove();
+        printBoard();
+    }
+    static void computerMove() {
+        Random rand = new Random();
+        int row, col;
 
-        int row = 1;
-        int col = 1;
-        boolean result = isValidMove(board, row, col);
-        if (result) {
-            System.out.println("Move is valid");
-        } else {
-            System.out.println("Move is invalid");
+        while (true) {
+            int slot = rand.nextInt(9) + 1;
+            row = (slot - 1) / 3;
+            col = (slot - 1) % 3;
+            if (board[row][col] == '-') {
+                board[row][col] = computerSymbol;
+                System.out.println("Computer placed at slot: " + slot);
+                break;
+            }
+        }
+    }
+    static void printBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 }
